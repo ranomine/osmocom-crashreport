@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'server',
 		'emailFrom',
-		'emailTo'
+		'emailTo',
+		'crashDumpDirectory'
 	],
 	#category : #OsmoCrashReportServer
 }
@@ -15,6 +16,11 @@ Class {
 { #category : #'as yet unclassified' }
 OsmoCrashReportServer >> addEmailTo: aTo [ 
 	emailTo add: aTo
+]
+
+{ #category : #'as yet unclassified' }
+OsmoCrashReportServer >> crashDumpDirectory: aDirectory [ 
+	crashDumpDirectory := aDirectory
 ]
 
 { #category : #'as yet unclassified' }
@@ -70,6 +76,7 @@ OsmoCrashReportServer >> handleCrash: aRequest response: aResponse [
 OsmoCrashReportServer >> initialize [
 	super initialize.
 	emailTo := OrderedCollection new.
+	baseDir := FileSystem workingDirectory.
 	server := ZnServer defaultServerClass new.
 	server delegate: (ZnDispatcherDelegate new 
 			map: '/crash' to: [ :request :response | self handleCrash: request response: response ]).
@@ -84,8 +91,7 @@ OsmoCrashReportServer >> start: aPort [
 { #category : #'as yet unclassified' }
 OsmoCrashReportServer >> storeCrash: aHeader data: aDump [ 
 	| fileName |
-	self flag: #todo. "Add base path"
-	fileName := 'crash-', DateAndTime now asUnixTime printString, '.fuel'.
+	fileName := crashDumpDirectory / 'crash-', DateAndTime now asUnixTime printString, '.fuel'.
 	fileName asFileReference writeStreamDo: [:stream |
 		stream nextPutAll: aDump.
 	]
