@@ -5,10 +5,17 @@ Class {
 	#name : #OsmoCrashReportServer,
 	#superclass : #Object,
 	#instVars : [
-		'server'
+		'server',
+		'emailFrom',
+		'emailTo'
 	],
 	#category : #OsmoCrashReportServer
 }
+
+{ #category : #'as yet unclassified' }
+OsmoCrashReportServer >> addEmailTo: aTo [ 
+	emailTo add: aTo
+]
 
 { #category : #'as yet unclassified' }
 OsmoCrashReportServer >> createTicketForCrash: aFLHeader data: aCollection [ 
@@ -19,21 +26,24 @@ OsmoCrashReportServer >> createTicketForCrash: aFLHeader data: aCollection [
 OsmoCrashReportServer >> emailCrash: aHeader data: aDump [ 
 	| mail smtp |
 	mail := MailMessage
-		from: 'hfreyther@sysmocom.de'
-		to: #('hfreyther@sysmocom.de')
+		from: emailFrom
+		to: emailTo
 		about: 'Received crash report'
 		asFollows: (aHeader additionalObjectAt: #backtrace) asString.
 
 	mail addAttachmentFrom: aDump readStream withName: 'crash.fuel'.
 	smtp := SMTPClient openOnHostNamed: 'mail.sysmocom.de'.
 	[[
-		smtp sendCommand: 'HELO xiaoyu.sysmocom.de'.
-		smtp checkResponse.
-		"smtp initiateSession."
+		smtp initiateSession.
 		smtp mailFrom: mail from to: mail recipientList text: mail text.
 		smtp quit
 	] on: Error do: [:e | "ignore all mail errors.." ]
 	] ensure: [smtp close].
+]
+
+{ #category : #'as yet unclassified' }
+OsmoCrashReportServer >> emailFrom: aFromAddress [ 
+	emailFrom := aFromAddress
 ]
 
 { #category : #'as yet unclassified' }
@@ -59,6 +69,7 @@ OsmoCrashReportServer >> handleCrash: aRequest response: aResponse [
 { #category : #'as yet unclassified' }
 OsmoCrashReportServer >> initialize [
 	super initialize.
+	emailTo := OrderedCollection new.
 	server := ZnServer defaultServerClass new.
 	server delegate: (ZnDispatcherDelegate new 
 			map: '/crash' to: [ :request :response | self handleCrash: request response: response ]).
