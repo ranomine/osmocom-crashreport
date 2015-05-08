@@ -123,6 +123,22 @@ ConfigurationOfOsmoCrashReportClient >> baseline01: spec [
 
 ]
 
+{ #category : #baselines }
+ConfigurationOfOsmoCrashReportClient >> baseline02: spec [
+	<version: '0.2-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/osmocom/OsmoCrashReport/main/'.
+		spec project: 'Osmocom' with: [
+				spec
+					className: #ConfigurationOfOsmocom;
+					versionString: #'stable';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main/' ].
+		spec package: #OsmoCrashReportClient. ].
+
+]
+
 { #category : #accessing }
 ConfigurationOfOsmoCrashReportClient >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -135,7 +151,7 @@ ConfigurationOfOsmoCrashReportClient >> customProjectAttributes [
 ConfigurationOfOsmoCrashReportClient >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '0.1-baseline'.
+	spec for: #'common' version: '0.2-baseline'.
 
 ]
 
@@ -156,7 +172,7 @@ ConfigurationOfOsmoCrashReportClient >> project [
 ConfigurationOfOsmoCrashReportClient >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1'.
+	spec for: #'common' version: '2'.
 
 ]
 
@@ -170,6 +186,20 @@ ConfigurationOfOsmoCrashReportClient >> version1: spec [
 		spec author: 'HolgerHansPeterFreyther'.
 		spec timestamp: '5/8/2015 15:11'.
 		spec project: 'Osmocom' with: '3-baseline'.
+		spec package: #OsmoCrashReportClient with: 'OsmoCrashReportClient-HolgerHansPeterFreyther.1'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfOsmoCrashReportClient >> version2: spec [
+	<version: '2' imports: #('0.2-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 2'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '5/8/2015 15:19'.
+		spec project: 'Osmocom' with: '3'.
 		spec package: #OsmoCrashReportClient with: 'OsmoCrashReportClient-HolgerHansPeterFreyther.1'. ].
 
 ]
