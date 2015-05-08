@@ -139,6 +139,23 @@ ConfigurationOfOsmoCrashReportClient >> baseline02: spec [
 
 ]
 
+{ #category : #baselines }
+ConfigurationOfOsmoCrashReportClient >> baseline03: spec [
+	<version: '0.3-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/osmocom/OsmoCrashReport/main/'.
+		spec project: 'Osmocom' with: [
+				spec
+					className: #ConfigurationOfOsmocom;
+					versionString: '3';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main/' ].
+		spec package: #OsmoCrashReportClient with: [
+				spec requires: #('Osmocom' ). ]. ].
+
+]
+
 { #category : #accessing }
 ConfigurationOfOsmoCrashReportClient >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -151,7 +168,7 @@ ConfigurationOfOsmoCrashReportClient >> customProjectAttributes [
 ConfigurationOfOsmoCrashReportClient >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '0.2-baseline'.
+	spec for: #'common' version: '0.3-baseline'.
 
 ]
 
