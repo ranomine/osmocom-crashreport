@@ -146,13 +146,19 @@ ConfigurationOfOsmoCrashReportClient >> baseline03: spec [
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
 		spec repository: 'http://smalltalkhub.com/mc/osmocom/OsmoCrashReport/main/'.
-		spec project: 'OsmoLogging' with: [
+		spec 
+			project: 'OsmoLogging' with: [
 				spec
 					className: #ConfigurationOfOsmoLogging;
 					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ].
+					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ];
+			project: 'OsmoCore' with: [
+				spec
+					className: #ConfigurationOfOsmoCore;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ].
 		spec package: #OsmoCrashReportClient with: [
-				spec requires: #('OsmoLogging' ). ]. ].
+				spec requires: #('OsmoLogging' 'OsmoCore' ). ]. ].
 
 ]
 
