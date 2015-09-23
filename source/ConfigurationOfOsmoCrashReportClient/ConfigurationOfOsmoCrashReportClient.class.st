@@ -195,7 +195,7 @@ ConfigurationOfOsmoCrashReportClient >> project [
 ConfigurationOfOsmoCrashReportClient >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '2'.
+	spec for: #'common' version: '3'.
 
 ]
 
@@ -223,6 +223,22 @@ ConfigurationOfOsmoCrashReportClient >> version2: spec [
 		spec author: 'HolgerHansPeterFreyther'.
 		spec timestamp: '5/8/2015 15:19'.
 		spec project: 'Osmocom' with: '3'.
+		spec package: #OsmoCrashReportClient with: 'OsmoCrashReportClient-HolgerHansPeterFreyther.1'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfOsmoCrashReportClient >> version3: spec [
+	<version: '3' imports: #('0.3-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 3'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '9/23/2015 20:25'.
+		spec 
+			project: 'OsmoLogging' with: '0.1-baseline';
+			project: 'OsmoCore' with: '0.1-baseline'.
 		spec package: #OsmoCrashReportClient with: 'OsmoCrashReportClient-HolgerHansPeterFreyther.1'. ].
 
 ]
