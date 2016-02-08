@@ -175,7 +175,7 @@ ConfigurationOfOsmoCrashReportClient >> baseline04: spec [
 					versionString: #'bleedingEdge';
 					repository: 'http://smalltalkhub.com/mc/osmocom/Logging/main/' ].
 		spec package: #OsmoCrashReportClient with: [
-				spec requires: #('OsmoLogging' 'OsmoCore' ). ]. ].
+				spec requires: #('OsmoLogging'). ]. ].
 
 ]
 
