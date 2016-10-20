@@ -300,7 +300,7 @@ ConfigurationOfOsmoCrashReportClient >> version5: spec [
 		spec description: 'version 5'.
 		spec author: 'HolgerHansPeterFreyther'.
 		spec timestamp: '10/20/2016 23:13'.
-		spec project: 'OsmoLogging' with: '2'.
+		spec project: 'OsmoLogging' with: '3'.
 		spec package: #OsmoCrashReportClient with: 'OsmoCrashReportClient-HolgerHansPeterFreyther.1'. ].
 
 ]
