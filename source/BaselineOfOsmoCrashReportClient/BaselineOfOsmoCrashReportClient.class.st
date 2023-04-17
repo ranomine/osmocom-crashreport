@@ -10,7 +10,7 @@ BaselineOfOsmoCrashReportClient >> baseline: spec [
 
 	spec baseline: 'OsmoLogging' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-logging:v7/source'.
+			repository: 'github://ranomine/osmocom-logging:v8/source'.
 	].
 
 	spec package: 'OsmoCrashReportClient' with: [
